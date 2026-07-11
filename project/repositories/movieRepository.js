@@ -16,7 +16,6 @@ async function readDb(collection)
 export async function getAll()
 {
     const movies = await readDb('movies');
-    console.log(movies);
     return movies;
 }
 
