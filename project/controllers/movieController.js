@@ -16,7 +16,11 @@ movieController.post('/create', async (req, res) => {
 });
 
 movieController.get('/search', async (req, res) => {
-    res.render('movies/search');
+    const movies = await movieService.getAllMovies();
+    const validMovies = movies.map(movie => {
+        
+    })
+    res.render('movies/search', { movies });
 });
 
 movieController.get('/:movieId', async (req, res) => {

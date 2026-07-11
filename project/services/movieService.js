@@ -2,7 +2,7 @@ import movieRepository from "../repositories/movieRepository.js";
 
 async function getAllMovies()
 {
-    return movieRepository.getAllMovies;
+    return await movieRepository.getAll();
 }
 
 function getById(movieId)
