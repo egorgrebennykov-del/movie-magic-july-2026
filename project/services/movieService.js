@@ -5,6 +5,11 @@ async function getAllMovies()
     return movieRepository.getAllMovies;
 }
 
+function getById(movieId)
+{
+    return movieRepository.getById(movieId);
+}
+
 function create(movieData)
 {
     return movieRepository.create(movieData);
@@ -12,5 +17,6 @@ function create(movieData)
 
 export const movieService = {
     getAllMovies,
+    getById,
     create
 };
