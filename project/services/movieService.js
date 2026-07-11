@@ -1,8 +1,8 @@
 import movieRepository from "../repositories/movieRepository.js";
 
-async function getAllMovies()
+async function getAllMovies(filter = {})
 {
-    return await movieRepository.getAll();
+    return await movieRepository.getAll(filter);
 }
 
 function getById(movieId)

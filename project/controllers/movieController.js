@@ -16,10 +16,9 @@ movieController.post('/create', async (req, res) => {
 });
 
 movieController.get('/search', async (req, res) => {
-    const movies = await movieService.getAllMovies();
-    const validMovies = movies.map(movie => {
-        
-    })
+    const filter = req.query;
+
+    const movies = await movieService.getAllMovies(filter);
     res.render('movies/search', { movies });
 });
 
