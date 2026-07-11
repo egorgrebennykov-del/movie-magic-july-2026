@@ -5,6 +5,12 @@ async function getAllMovies()
     return movieRepository.getAllMovies;
 }
 
-const movieService = {
-    getAllMovies
+function create(movieData)
+{
+    return movieRepository.create(movieData);
+}
+
+export const movieService = {
+    getAllMovies,
+    create
 };
