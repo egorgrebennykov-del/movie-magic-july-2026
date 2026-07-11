@@ -15,6 +15,10 @@ movieController.post('/create', async (req, res) => {
     res.redirect('/');
 });
 
+movieController.get('/search', async (req, res) => {
+    res.render('movies/search');
+});
+
 movieController.get('/:movieId', async (req, res) => {
     const movieId = req.params.movieId;
 
