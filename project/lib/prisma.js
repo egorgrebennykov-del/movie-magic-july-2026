@@ -1,14 +1,27 @@
 import "dotenv/config";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../generated/prisma/client";
-
-const connectionString = process.env.DATABASE_URL;
 
 let prisma = null;
 
+const connectionString = process.env.DATABASE_URL;
+
 if (connectionString) {
-    const adapter = new PrismaPg({ connectionString });
-    prisma = new PrismaClient({ adapter });
+    try {
+        const { PrismaPg } = await import("@prisma/adapter-pg");
+
+        let PrismaClientCtor;
+        try {
+            ({ PrismaClient: PrismaClientCtor } = await import("../generated/prisma/client"));
+        } catch {
+            ({ PrismaClient: PrismaClientCtor } = await import("@prisma/client"));
+        }
+
+        const adapter = new PrismaPg({ connectionString });
+        prisma = new PrismaClientCtor({ adapter });
+    } catch (error) {
+        console.error("Prisma init failed:", error.message);
+    }
+} else {
+    console.warn("DATABASE_URL is not set. Prisma is disabled.");
 }
 
 export { prisma };

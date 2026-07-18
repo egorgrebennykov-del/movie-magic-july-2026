@@ -15,8 +15,14 @@ datasource db {
 model Movie {
   id           Int @id @default(autoincrement())
   title        String
+  category     String
+  genre        String
+  director     String
+  year         Int
+  imageUrl     String
+  rating       Float
   description  String?
-  releaseDatas DateTime
+  releaseData  DateTime
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
