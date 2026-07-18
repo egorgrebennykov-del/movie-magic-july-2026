@@ -384,7 +384,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-
+  Movie: 'Movie',
+  Artist: 'Artist'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,10 +401,159 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: never
+    modelProps: "movie" | "artist"
     txIsolationLevel: TransactionIsolationLevel
   }
-  model: {}
+  model: {
+    Movie: {
+      payload: Prisma.$MoviePayload<ExtArgs>
+      fields: Prisma.MovieFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MovieFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MovieFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload>
+        }
+        findFirst: {
+          args: Prisma.MovieFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MovieFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload>
+        }
+        findMany: {
+          args: Prisma.MovieFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload>[]
+        }
+        create: {
+          args: Prisma.MovieCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload>
+        }
+        createMany: {
+          args: Prisma.MovieCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MovieCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload>[]
+        }
+        delete: {
+          args: Prisma.MovieDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload>
+        }
+        update: {
+          args: Prisma.MovieUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload>
+        }
+        deleteMany: {
+          args: Prisma.MovieDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MovieUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MovieUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload>[]
+        }
+        upsert: {
+          args: Prisma.MovieUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MoviePayload>
+        }
+        aggregate: {
+          args: Prisma.MovieAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMovie>
+        }
+        groupBy: {
+          args: Prisma.MovieGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MovieGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MovieCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MovieCountAggregateOutputType> | number
+        }
+      }
+    }
+    Artist: {
+      payload: Prisma.$ArtistPayload<ExtArgs>
+      fields: Prisma.ArtistFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ArtistFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ArtistFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        findFirst: {
+          args: Prisma.ArtistFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ArtistFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        findMany: {
+          args: Prisma.ArtistFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>[]
+        }
+        create: {
+          args: Prisma.ArtistCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        createMany: {
+          args: Prisma.ArtistCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ArtistCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>[]
+        }
+        delete: {
+          args: Prisma.ArtistDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        update: {
+          args: Prisma.ArtistUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        deleteMany: {
+          args: Prisma.ArtistDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ArtistUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ArtistUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>[]
+        }
+        upsert: {
+          args: Prisma.ArtistUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPayload>
+        }
+        aggregate: {
+          args: Prisma.ArtistAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateArtist>
+        }
+        groupBy: {
+          args: Prisma.ArtistGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ArtistGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ArtistCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ArtistCountAggregateOutputType> | number
+        }
+      }
+    }
+  }
 } & {
   other: {
     payload: any
@@ -442,7 +592,120 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const MovieScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  category: 'category',
+  genre: 'genre',
+  director: 'director',
+  year: 'year',
+  imageUrl: 'imageUrl',
+  rating: 'rating',
+  description: 'description',
+  releaseData: 'releaseData',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
 
+export type MovieScalarFieldEnum = (typeof MovieScalarFieldEnum)[keyof typeof MovieScalarFieldEnum]
+
+
+export const ArtistScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  born: 'born',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ArtistScalarFieldEnum = (typeof ArtistScalarFieldEnum)[keyof typeof ArtistScalarFieldEnum]
+
+
+export const SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+} as const
+
+export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+
+/**
+ * Field references
+ */
+
+
+/**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'String'
+ */
+export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+/**
+ * Reference to a field of type 'String[]'
+ */
+export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
 
 /**
  * Batch Payload for updateMany & deleteMany & createMany
@@ -553,7 +816,10 @@ export type PrismaClientOptions = ({
    */
   queryPlanCacheMaxSize?: number
 }
-export type GlobalOmitConfig = {}
+export type GlobalOmitConfig = {
+  movie?: Prisma.MovieOmit
+  artist?: Prisma.ArtistOmit
+}
 
 /* Types for Logging */
 export type LogLevel = 'info' | 'query' | 'warn' | 'error'

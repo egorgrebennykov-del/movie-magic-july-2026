@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.8.0",
   "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Movie {\n  id          Int      @id @default(autoincrement())\n  title       String\n  category    String\n  genre       String\n  director    String\n  year        Int\n  imageUrl    String\n  rating      Float\n  description String?\n  releaseData DateTime\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  @@map(\"movies\")\n}\n\nmodel Artist {\n  id        Int      @id @default(autoincrement())\n  name      String\n  born      String\n  imageUrl  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@map(\"artists\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -32,10 +32,10 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Movie\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"genre\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"director\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"year\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"imageUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"rating\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"releaseData\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"movies\"},\"Artist\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"born\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"imageUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"artists\"}},\"enums\":{},\"types\":{}}")
 config.parameterizationSchema = {
-  strings: JSON.parse("[]"),
-  graph: "AAAA"
+  strings: JSON.parse("[\"where\",\"Movie.findUnique\",\"Movie.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Movie.findFirst\",\"Movie.findFirstOrThrow\",\"Movie.findMany\",\"data\",\"Movie.createOne\",\"Movie.createMany\",\"Movie.createManyAndReturn\",\"Movie.updateOne\",\"Movie.updateMany\",\"Movie.updateManyAndReturn\",\"create\",\"update\",\"Movie.upsertOne\",\"Movie.deleteOne\",\"Movie.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Movie.groupBy\",\"Movie.aggregate\",\"Artist.findUnique\",\"Artist.findUniqueOrThrow\",\"Artist.findFirst\",\"Artist.findFirstOrThrow\",\"Artist.findMany\",\"Artist.createOne\",\"Artist.createMany\",\"Artist.createManyAndReturn\",\"Artist.updateOne\",\"Artist.updateMany\",\"Artist.updateManyAndReturn\",\"Artist.upsertOne\",\"Artist.deleteOne\",\"Artist.deleteMany\",\"Artist.groupBy\",\"Artist.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"name\",\"born\",\"imageUrl\",\"createdAt\",\"updatedAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"title\",\"category\",\"genre\",\"director\",\"year\",\"rating\",\"description\",\"releaseData\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+  graph: "WxUgDywAAEkAMC0AAAQAEC4AAEkAMC8CAAAAATIBAEAAITNAAEEAITRAAEEAIUABAEAAIUEBAEAAIUIBAEAAIUMBAEAAIUQCAD8AIUUIAEoAIUYBAEsAIUdAAEEAIQEAAAABACABAAAAAQAgDywAAEkAMC0AAAQAEC4AAEkAMC8CAD8AITIBAEAAITNAAEEAITRAAEEAIUABAEAAIUEBAEAAIUIBAEAAIUMBAEAAIUQCAD8AIUUIAEoAIUYBAEsAIUdAAEEAIQFGAABUACADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAMLwIAAAABMgEAAAABM0AAAAABNEAAAAABQAEAAAABQQEAAAABQgEAAAABQwEAAAABRAIAAAABRQgAAAABRgEAAAABR0AAAAABAQgAAAkAIAwvAgAAAAEyAQAAAAEzQAAAAAE0QAAAAAFAAQAAAAFBAQAAAAFCAQAAAAFDAQAAAAFEAgAAAAFFCAAAAAFGAQAAAAFHQAAAAAEBCAAACwAwAQgAAAsAMAwvAgBTACEyAQBRACEzQABSACE0QABSACFAAQBRACFBAQBRACFCAQBRACFDAQBRACFEAgBTACFFCABaACFGAQBbACFHQABSACECAAAAAQAgCAAADgAgDC8CAFMAITIBAFEAITNAAFIAITRAAFIAIUABAFEAIUEBAFEAIUIBAFEAIUMBAFEAIUQCAFMAIUUIAFoAIUYBAFsAIUdAAFIAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBhUAAFUAIBYAAFYAIBcAAFkAIBgAAFgAIBkAAFcAIEYAAFQAIA8sAABCADAtAAAXABAuAABCADAvAgA0ACEyAQA1ACEzQAA2ACE0QAA2ACFAAQA1ACFBAQA1ACFCAQA1ACFDAQA1ACFEAgA0ACFFCABDACFGAQBEACFHQAA2ACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAksAAA-ADAtAAAdABAuAAA-ADAvAgAAAAEwAQBAACExAQBAACEyAQBAACEzQABBACE0QABBACEBAAAAGgAgAQAAABoAIAksAAA-ADAtAAAdABAuAAA-ADAvAgA_ACEwAQBAACExAQBAACEyAQBAACEzQABBACE0QABBACEAAwAAAB0AIAMAAB4AMAQAABoAIAMAAAAdACADAAAeADAEAAAaACADAAAAHQAgAwAAHgAwBAAAGgAgBi8CAAAAATABAAAAATEBAAAAATIBAAAAATNAAAAAATRAAAAAAQEIAAAiACAGLwIAAAABMAEAAAABMQEAAAABMgEAAAABM0AAAAABNEAAAAABAQgAACQAMAEIAAAkADAGLwIAUwAhMAEAUQAhMQEAUQAhMgEAUQAhM0AAUgAhNEAAUgAhAgAAABoAIAgAACcAIAYvAgBTACEwAQBRACExAQBRACEyAQBRACEzQABSACE0QABSACECAAAAHQAgCAAAKQAgAgAAAB0AIAgAACkAIAMAAAAaACAPAAAiACAQAAAnACABAAAAGgAgAQAAAB0AIAUVAABMACAWAABNACAXAABQACAYAABPACAZAABOACAJLAAAMwAwLQAAMAAQLgAAMwAwLwIANAAhMAEANQAhMQEANQAhMgEANQAhM0AANgAhNEAANgAhAwAAAB0AIAMAAC8AMBQAADAAIAMAAAAdACADAAAeADAEAAAaACAJLAAAMwAwLQAAMAAQLgAAMwAwLwIANAAhMAEANQAhMQEANQAhMgEANQAhM0AANgAhNEAANgAhDRUAADgAIBYAAD0AIBcAADgAIBgAADgAIBkAADgAIDUCAAAAATYCAAAABDcCAAAABDgCAAAAATkCAAAAAToCAAAAATsCAAAAATwCADwAIQ4VAAA4ACAYAAA7ACAZAAA7ACA1AQAAAAE2AQAAAAQ3AQAAAAQ4AQAAAAE5AQAAAAE6AQAAAAE7AQAAAAE8AQA6ACE9AQAAAAE-AQAAAAE_AQAAAAELFQAAOAAgGAAAOQAgGQAAOQAgNUAAAAABNkAAAAAEN0AAAAAEOEAAAAABOUAAAAABOkAAAAABO0AAAAABPEAANwAhCxUAADgAIBgAADkAIBkAADkAIDVAAAAAATZAAAAABDdAAAAABDhAAAAAATlAAAAAATpAAAAAATtAAAAAATxAADcAIQg1AgAAAAE2AgAAAAQ3AgAAAAQ4AgAAAAE5AgAAAAE6AgAAAAE7AgAAAAE8AgA4ACEINUAAAAABNkAAAAAEN0AAAAAEOEAAAAABOUAAAAABOkAAAAABO0AAAAABPEAAOQAhDhUAADgAIBgAADsAIBkAADsAIDUBAAAAATYBAAAABDcBAAAABDgBAAAAATkBAAAAAToBAAAAATsBAAAAATwBADoAIT0BAAAAAT4BAAAAAT8BAAAAAQs1AQAAAAE2AQAAAAQ3AQAAAAQ4AQAAAAE5AQAAAAE6AQAAAAE7AQAAAAE8AQA7ACE9AQAAAAE-AQAAAAE_AQAAAAENFQAAOAAgFgAAPQAgFwAAOAAgGAAAOAAgGQAAOAAgNQIAAAABNgIAAAAENwIAAAAEOAIAAAABOQIAAAABOgIAAAABOwIAAAABPAIAPAAhCDUIAAAAATYIAAAABDcIAAAABDgIAAAAATkIAAAAAToIAAAAATsIAAAAATwIAD0AIQksAAA-ADAtAAAdABAuAAA-ADAvAgA_ACEwAQBAACExAQBAACEyAQBAACEzQABBACE0QABBACEINQIAAAABNgIAAAAENwIAAAAEOAIAAAABOQIAAAABOgIAAAABOwIAAAABPAIAOAAhCzUBAAAAATYBAAAABDcBAAAABDgBAAAAATkBAAAAAToBAAAAATsBAAAAATwBADsAIT0BAAAAAT4BAAAAAT8BAAAAAQg1QAAAAAE2QAAAAAQ3QAAAAAQ4QAAAAAE5QAAAAAE6QAAAAAE7QAAAAAE8QAA5ACEPLAAAQgAwLQAAFwAQLgAAQgAwLwIANAAhMgEANQAhM0AANgAhNEAANgAhQAEANQAhQQEANQAhQgEANQAhQwEANQAhRAIANAAhRQgAQwAhRgEARAAhR0AANgAhDRUAADgAIBYAAD0AIBcAAD0AIBgAAD0AIBkAAD0AIDUIAAAAATYIAAAABDcIAAAABDgIAAAAATkIAAAAAToIAAAAATsIAAAAATwIAEgAIQ4VAABGACAYAABHACAZAABHACA1AQAAAAE2AQAAAAU3AQAAAAU4AQAAAAE5AQAAAAE6AQAAAAE7AQAAAAE8AQBFACE9AQAAAAE-AQAAAAE_AQAAAAEOFQAARgAgGAAARwAgGQAARwAgNQEAAAABNgEAAAAFNwEAAAAFOAEAAAABOQEAAAABOgEAAAABOwEAAAABPAEARQAhPQEAAAABPgEAAAABPwEAAAABCDUCAAAAATYCAAAABTcCAAAABTgCAAAAATkCAAAAAToCAAAAATsCAAAAATwCAEYAIQs1AQAAAAE2AQAAAAU3AQAAAAU4AQAAAAE5AQAAAAE6AQAAAAE7AQAAAAE8AQBHACE9AQAAAAE-AQAAAAE_AQAAAAENFQAAOAAgFgAAPQAgFwAAPQAgGAAAPQAgGQAAPQAgNQgAAAABNggAAAAENwgAAAAEOAgAAAABOQgAAAABOggAAAABOwgAAAABPAgASAAhDywAAEkAMC0AAAQAEC4AAEkAMC8CAD8AITIBAEAAITNAAEEAITRAAEEAIUABAEAAIUEBAEAAIUIBAEAAIUMBAEAAIUQCAD8AIUUIAEoAIUYBAEsAIUdAAEEAIQg1CAAAAAE2CAAAAAQ3CAAAAAQ4CAAAAAE5CAAAAAE6CAAAAAE7CAAAAAE8CAA9ACELNQEAAAABNgEAAAAFNwEAAAAFOAEAAAABOQEAAAABOgEAAAABOwEAAAABPAEARwAhPQEAAAABPgEAAAABPwEAAAABAAAAAAABSAEAAAABAUhAAAAAAQVIAgAAAAFJAgAAAAFKAgAAAAFLAgAAAAFMAgAAAAEAAAAAAAAFSAgAAAABSQgAAAABSggAAAABSwgAAAABTAgAAAABAUgBAAAAAQAAAAAFFQAGFgAHFwAIGAAJGQAKAAAAAAAFFQAGFgAHFwAIGAAJGQAKAAAABRUAEBYAERcAEhgAExkAFAAAAAAABRUAEBYAERcAEhgAExkAFAECAQIDAQUGAQYHAQcIAQkKAQoMAgsNAwwPAQ0RAg4SBBETARIUARMVAhoYBRsZCxwbDB0cDB4fDB8gDCAhDCEjDCIlAiMmDSQoDCUqAiYrDicsDCgtDCkuAioxDysyFQ"
 }
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
@@ -70,8 +70,8 @@ export interface PrismaClientConstructor {
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Movies
+   * const movies = await prisma.movie.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -94,8 +94,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Movies
+ * const movies = await prisma.movie.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -188,7 +188,25 @@ export interface PrismaClient<
     extArgs: ExtArgs
   }>>
 
-    
+      /**
+   * `prisma.movie`: Exposes CRUD operations for the **Movie** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Movies
+    * const movies = await prisma.movie.findMany()
+    * ```
+    */
+  get movie(): Prisma.MovieDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.artist`: Exposes CRUD operations for the **Artist** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Artists
+    * const artists = await prisma.artist.findMany()
+    * ```
+    */
+  get artist(): Prisma.ArtistDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
