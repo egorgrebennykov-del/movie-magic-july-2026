@@ -28,15 +28,18 @@ export type AggregateArtist = {
 
 export type ArtistAvgAggregateOutputType = {
   id: number | null
+  age: number | null
 }
 
 export type ArtistSumAggregateOutputType = {
   id: number | null
+  age: number | null
 }
 
 export type ArtistMinAggregateOutputType = {
   id: number | null
   name: string | null
+  age: number | null
   born: string | null
   imageUrl: string | null
   createdAt: Date | null
@@ -46,6 +49,7 @@ export type ArtistMinAggregateOutputType = {
 export type ArtistMaxAggregateOutputType = {
   id: number | null
   name: string | null
+  age: number | null
   born: string | null
   imageUrl: string | null
   createdAt: Date | null
@@ -55,6 +59,7 @@ export type ArtistMaxAggregateOutputType = {
 export type ArtistCountAggregateOutputType = {
   id: number
   name: number
+  age: number
   born: number
   imageUrl: number
   createdAt: number
@@ -65,15 +70,18 @@ export type ArtistCountAggregateOutputType = {
 
 export type ArtistAvgAggregateInputType = {
   id?: true
+  age?: true
 }
 
 export type ArtistSumAggregateInputType = {
   id?: true
+  age?: true
 }
 
 export type ArtistMinAggregateInputType = {
   id?: true
   name?: true
+  age?: true
   born?: true
   imageUrl?: true
   createdAt?: true
@@ -83,6 +91,7 @@ export type ArtistMinAggregateInputType = {
 export type ArtistMaxAggregateInputType = {
   id?: true
   name?: true
+  age?: true
   born?: true
   imageUrl?: true
   createdAt?: true
@@ -92,6 +101,7 @@ export type ArtistMaxAggregateInputType = {
 export type ArtistCountAggregateInputType = {
   id?: true
   name?: true
+  age?: true
   born?: true
   imageUrl?: true
   createdAt?: true
@@ -188,6 +198,7 @@ export type ArtistGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type ArtistGroupByOutputType = {
   id: number
   name: string
+  age: number
   born: string
   imageUrl: string
   createdAt: Date
@@ -220,6 +231,7 @@ export type ArtistWhereInput = {
   NOT?: Prisma.ArtistWhereInput | Prisma.ArtistWhereInput[]
   id?: Prisma.IntFilter<"Artist"> | number
   name?: Prisma.StringFilter<"Artist"> | string
+  age?: Prisma.IntFilter<"Artist"> | number
   born?: Prisma.StringFilter<"Artist"> | string
   imageUrl?: Prisma.StringFilter<"Artist"> | string
   createdAt?: Prisma.DateTimeFilter<"Artist"> | Date | string
@@ -229,6 +241,7 @@ export type ArtistWhereInput = {
 export type ArtistOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   born?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -241,6 +254,7 @@ export type ArtistWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ArtistWhereInput[]
   NOT?: Prisma.ArtistWhereInput | Prisma.ArtistWhereInput[]
   name?: Prisma.StringFilter<"Artist"> | string
+  age?: Prisma.IntFilter<"Artist"> | number
   born?: Prisma.StringFilter<"Artist"> | string
   imageUrl?: Prisma.StringFilter<"Artist"> | string
   createdAt?: Prisma.DateTimeFilter<"Artist"> | Date | string
@@ -250,6 +264,7 @@ export type ArtistWhereUniqueInput = Prisma.AtLeast<{
 export type ArtistOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   born?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -267,6 +282,7 @@ export type ArtistScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ArtistScalarWhereWithAggregatesInput | Prisma.ArtistScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Artist"> | number
   name?: Prisma.StringWithAggregatesFilter<"Artist"> | string
+  age?: Prisma.IntWithAggregatesFilter<"Artist"> | number
   born?: Prisma.StringWithAggregatesFilter<"Artist"> | string
   imageUrl?: Prisma.StringWithAggregatesFilter<"Artist"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Artist"> | Date | string
@@ -275,6 +291,7 @@ export type ArtistScalarWhereWithAggregatesInput = {
 
 export type ArtistCreateInput = {
   name: string
+  age: number
   born: string
   imageUrl: string
   createdAt?: Date | string
@@ -284,6 +301,7 @@ export type ArtistCreateInput = {
 export type ArtistUncheckedCreateInput = {
   id?: number
   name: string
+  age: number
   born: string
   imageUrl: string
   createdAt?: Date | string
@@ -292,6 +310,7 @@ export type ArtistUncheckedCreateInput = {
 
 export type ArtistUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
   born?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -301,6 +320,7 @@ export type ArtistUpdateInput = {
 export type ArtistUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
   born?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -310,6 +330,7 @@ export type ArtistUncheckedUpdateInput = {
 export type ArtistCreateManyInput = {
   id?: number
   name: string
+  age: number
   born: string
   imageUrl: string
   createdAt?: Date | string
@@ -318,6 +339,7 @@ export type ArtistCreateManyInput = {
 
 export type ArtistUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
   born?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -327,6 +349,7 @@ export type ArtistUpdateManyMutationInput = {
 export type ArtistUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  age?: Prisma.IntFieldUpdateOperationsInput | number
   born?: Prisma.StringFieldUpdateOperationsInput | string
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -336,6 +359,7 @@ export type ArtistUncheckedUpdateManyInput = {
 export type ArtistCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   born?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -344,11 +368,13 @@ export type ArtistCountOrderByAggregateInput = {
 
 export type ArtistAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  age?: Prisma.SortOrder
 }
 
 export type ArtistMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   born?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -358,6 +384,7 @@ export type ArtistMaxOrderByAggregateInput = {
 export type ArtistMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   born?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -366,6 +393,7 @@ export type ArtistMinOrderByAggregateInput = {
 
 export type ArtistSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  age?: Prisma.SortOrder
 }
 
 
@@ -373,6 +401,7 @@ export type ArtistSumOrderByAggregateInput = {
 export type ArtistSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  age?: boolean
   born?: boolean
   imageUrl?: boolean
   createdAt?: boolean
@@ -382,6 +411,7 @@ export type ArtistSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type ArtistSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  age?: boolean
   born?: boolean
   imageUrl?: boolean
   createdAt?: boolean
@@ -391,6 +421,7 @@ export type ArtistSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type ArtistSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  age?: boolean
   born?: boolean
   imageUrl?: boolean
   createdAt?: boolean
@@ -400,13 +431,14 @@ export type ArtistSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type ArtistSelectScalar = {
   id?: boolean
   name?: boolean
+  age?: boolean
   born?: boolean
   imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ArtistOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "born" | "imageUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["artist"]>
+export type ArtistOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "age" | "born" | "imageUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["artist"]>
 
 export type $ArtistPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Artist"
@@ -414,6 +446,7 @@ export type $ArtistPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
+    age: number
     born: string
     imageUrl: string
     createdAt: Date
@@ -843,6 +876,7 @@ export interface Prisma__ArtistClient<T, Null = never, ExtArgs extends runtime.T
 export interface ArtistFieldRefs {
   readonly id: Prisma.FieldRef<"Artist", 'Int'>
   readonly name: Prisma.FieldRef<"Artist", 'String'>
+  readonly age: Prisma.FieldRef<"Artist", 'Int'>
   readonly born: Prisma.FieldRef<"Artist", 'String'>
   readonly imageUrl: Prisma.FieldRef<"Artist", 'String'>
   readonly createdAt: Prisma.FieldRef<"Artist", 'DateTime'>

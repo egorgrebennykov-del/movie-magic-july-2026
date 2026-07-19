@@ -92,6 +92,7 @@ export type MovieScalarFieldEnum = (typeof MovieScalarFieldEnum)[keyof typeof Mo
 export const ArtistScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  age: 'age',
   born: 'born',
   imageUrl: 'imageUrl',
   createdAt: 'createdAt',
