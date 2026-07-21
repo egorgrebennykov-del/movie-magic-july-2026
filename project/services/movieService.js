@@ -7,6 +7,7 @@ async function getAllMovies(filter = {})
 
 function getById(movieId)
 {
+    movieId = Number(movieId);
     return movieRepository.getById(movieId);
 }
 

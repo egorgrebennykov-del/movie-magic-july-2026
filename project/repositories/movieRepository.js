@@ -36,39 +36,23 @@ export async function getAll(filter = {}) {
 }
 
 async function getById(movieId) {
-    const movies = await readDb('movies');
-    const movie = movies.find(m => m.id === movieId);
+    const movie = await prisma.movie.findUnique({
+        where: { id: movieId }
+    });
 
     if (!movie) {
-        throw new Error('No Movie Found');
+        throw new Error('No movie found!');
     }
 
     return movie;
 }
 
 async function create(movieData) {
-    if (prisma?.movie?.create) {
-        try {
-            return await prisma.movie.create({
-                data: movieData,
-            });
-        } catch (error) {
-            console.warn('Prisma create failed, falling back to db.json:', error.message);
-        }
-    }
+    const movie = await prisma.movie.create({
+        data: movieData,
+    });
 
-    const db = await readDb();
-    const movies = Array.isArray(db.movies) ? db.movies : [];
-
-    const createdMovie = {
-        id: `${Date.now()}`,
-        ...movieData,
-    };
-
-    db.movies = [...movies, createdMovie];
-    await writeDb(db);
-
-    return createdMovie;
+    return movie;
 }
 
 const movieRepository = {

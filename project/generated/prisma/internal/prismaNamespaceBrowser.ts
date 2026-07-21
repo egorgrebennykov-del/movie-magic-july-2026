@@ -81,7 +81,6 @@ export const MovieScalarFieldEnum = {
   imageUrl: 'imageUrl',
   rating: 'rating',
   description: 'description',
-  releaseData: 'releaseData',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   artistId: 'artistId'
