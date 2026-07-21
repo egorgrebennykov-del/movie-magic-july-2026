@@ -18,8 +18,19 @@ function create(movieData)
     return movieRepository.create(movieData);
 }
 
+async function attachArtist(movieid, artistId)
+{
+    movieid = Number(movieid);
+    artistId = Number(artistId);
+
+    const result = await movieRepository.attachArtist(movieid, artistId);
+
+    return result;
+}
+
 export const movieService = {
     getAllMovies,
     getById,
-    create
+    create,
+    attachArtist,
 };

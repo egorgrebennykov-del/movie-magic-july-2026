@@ -35,8 +35,21 @@ movieController.get('/:movieId/attach', async (req, res) => {
     const movie = await movieService.getById(movieId);
 
     const artists = await artistService.getAll();
-    
+
     res.render('movies/attach', { movie, artists, pageTitle: 'Attach Movie' });
+});
+
+movieController.post('/:movieId/attach', async (req, res) => {
+    const movieId = req.params.movieId;
+    const artistId = req.body.artist;
+
+    if (!artistId) {
+        return res.redirect(`/movies/${movieId}/attach`);
+    }
+
+    await movieService.attachArtist(movieId, artistId);
+
+    res.redirect(`/movies/${movieId}`);
 });
 
 export default movieController;

@@ -55,10 +55,25 @@ async function create(movieData) {
     return movie;
 }
 
+async function attachArtist(movieId, artistId)
+{
+    const result = await prisma.movie.update({
+        where: {id: movieId},
+        data: {
+            cast:{
+                connect: {id: artistId}
+            }
+        }
+    });
+
+    return result;
+}
+
 const movieRepository = {
     getAll,
     getById,
-    create
+    create,
+    attachArtist
 };
 
 export default movieRepository;
