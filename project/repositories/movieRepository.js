@@ -37,7 +37,8 @@ export async function getAll(filter = {}) {
 
 async function getById(movieId) {
     const movie = await prisma.movie.findUnique({
-        where: { id: movieId }
+        where: { id: movieId },
+        include: { cast: true }
     });
 
     if (!movie) {
