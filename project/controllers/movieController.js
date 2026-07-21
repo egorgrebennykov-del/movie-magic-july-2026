@@ -30,10 +30,10 @@ movieController.get('/:movieId', async (req, res) => {
     res.render('movies/details', { movie, pageTitle: 'Details' });
 });
 
-movieController.get('/:movieId/attach', (req, res) => {
+movieController.get('/:movieId/attach', async (req, res) => {
     const movieId = req.params.movieId;
-    const movie = movieService.getById(movieId);
-    res.render('movies/attach', {pageTitle: 'Attach Movie'});
+    const movie = await movieService.getById(movieId);
+    res.render('movies/attach', { movie, pageTitle: 'Attach Movie' });
 });
 
 export default movieController;
