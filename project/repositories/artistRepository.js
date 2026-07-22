@@ -9,9 +9,15 @@ export async function create(artistData)
     return artist;
 }
 
-export async function getAll()
+export async function getAll(filter = {})
 {
-    const artists = await prisma.artist.findMany();
+    const artists = await prisma.artist.findMany({
+        where: {
+            id: {
+                notIn: filter.exclude || [],
+            }
+        }
+    });
     return artists;
 }
 
