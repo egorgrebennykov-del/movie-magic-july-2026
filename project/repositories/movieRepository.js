@@ -18,19 +18,19 @@ async function writeDb(db) {
 }
 
 export async function getAll(filter = {}) {
-    let movies = await prisma.movie.findMany();
-
-    if (filter.search) {
-        movies = movies.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
-    }
-
-    if (filter.year) {
-        movies = movies.filter(movie => movie.year.includes(filter.year));
-    }
-
-    if (filter.genre) {
-        movies = movies.filter(movie => movie.genre.toLowerCase().includes(filter.genre.toLowerCase()));
-    }
+    const movies = await prisma.movie.findMany({
+        where: {
+            year: filter.year || undefined,
+            genre: {
+                equals: filter.genre || undefined,
+                mode: 'insensitive',
+            },
+            title: {
+                contains: filter.search || undefined,
+                mode: 'insensitive',
+            },
+        }
+    });
 
     return movies;
 }
