@@ -1,5 +1,7 @@
+import userRepository from "../repositories/userRepository.js";
+
 export async function register(userData){
-    console.log(`Email: ${userData.email}, Password: ${userData.password}, Repeat Password: ${userData.repeatPassword}`)
+    return await userRepository.create(userData);
 }
 
 const authService = {
