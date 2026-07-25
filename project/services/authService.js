@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import userRepository from "../repositories/userRepository.js";
 
 export async function register(userData){
@@ -14,7 +15,22 @@ export async function register(userData){
 export async function login(userData){
     const user = await userRepository.findByEmail(userData.email);
 
-    console.log(user);
+    if(!user)
+    {
+        throw new Error('No User Found!');
+    }
+
+    const isPasswordValid = await bcrypt.compare(userData.password, user.password);
+
+    if(!isPasswordValid)
+    {
+        throw new Error('Invalid Password!');
+    }
+
+    const payload = { userId: user.id, email: user.email };
+    const token = jwt.sign(payload, "SECRETGOESHERE", { expiresIn: '1h'});
+
+    return token;
 }
 
 const authService = {
