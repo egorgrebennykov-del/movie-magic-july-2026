@@ -1,20 +1,38 @@
 import jwt from 'jsonwebtoken';
 
-export default function authMiddleware(req, res, next) {
-    const token = req.cookies;
+export function authMiddleware(req, res, next) {
+    const token = req.cookies.auth;
 
-    if(!token)
-    {
-        return next();
+    if (!token) {
+       return next();
     }
 
-    try{
-        const decodedToken = jwt.verify('token', 'SECRETGOESHERE');
+    try {
+        const decodedToken = jwt.verify(token, process.env.AUTH_SECRET || 'SECRETGOESHERE');
+
         req.user = decodedToken;
-    } catch {
-        console.error('Invalid Token: ', err);
-        return res.status(401).send('Unauthoized: Invalid token');
+        res.locals.user = decodedToken;
+    } catch (err) {
+        res.clearCookie('auth');
+        
+        return res.redirect('/auth/login');
     }
-    
+
+    next();
+}
+
+export function isAuth(req, res, next) {
+    if (!req.user) {
+        return res.redirect('/auth/login');
+    }
+
+    next();
+}
+
+export function isGuest(req, res, next) {
+    if (req.user) {
+        return res.redirect('/');
+    }
+
     next();
 }

@@ -1,13 +1,14 @@
 import { Router } from 'express'
 import authService from '../services/authService.js';
+import { isGuest } from '../middlewares/authMiddleware.js';
 
 const authController = Router();
 
-authController.get('/register', (req, res) => {
+authController.get('/register', isGuest, (req, res) => {
     res.render('auth/register', { pageTitle: 'Register' });
 });
 
-authController.post('/register', async (req, res) => {
+authController.post('/register', isGuest, async (req, res) => {
     const { email, password, repeatPassword } = req.body;
 
     await authService.register({email, password, repeatPassword});
@@ -15,11 +16,11 @@ authController.post('/register', async (req, res) => {
     res.redirect('/auth/login');
 });
 
-authController.get('/login', (req, res) => {
+authController.get('/login', isGuest, (req, res) => {
     res.render('auth/login', { pageTitle: 'Login' });
 });
 
-authController.post('/login', async (req, res) => {
+authController.post('/login', isGuest, async (req, res) => {
     const { email, password } = req.body;
 
     const token = await authService.login({email, password});

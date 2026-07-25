@@ -28,7 +28,7 @@ export async function login(userData){
     }
 
     const payload = { id: user.id, email: user.email };
-    const token = jwt.sign(payload, "SECRETGOESHERE", { expiresIn: '1h'});
+    const token = jwt.sign(payload, process.env.AUTH_SECRET || 'SECRETGOESHERE', { expiresIn: '1h'});
 
     return token;
 }
