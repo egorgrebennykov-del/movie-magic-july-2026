@@ -1,6 +1,7 @@
 import express from 'express';
 import { engine } from 'express-handlebars';
 import routes from '../routes.js';
+import authMiddleware from '../middlewares/authMiddleware.js';
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.set('views', './views');
 app.use(express.static('./public'));
 
 app.use(express.urlencoded());
+app.use(authMiddleware);
 app.use(routes);
 
 app.listen(5000, () => console.log('Server is listening on http://localhost:5000...'));
