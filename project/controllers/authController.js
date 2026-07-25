@@ -12,11 +12,17 @@ authController.post('/register', async (req, res) => {
 
     await authService.register({email, password, repeatPassword});
 
-    res.redirect('/');
+    res.redirect('/auth/login');
 });
 
 authController.get('/login', (req, res) => {
     res.render('auth/login', { pageTitle: 'Login' });
-})
+});
+
+authController.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    console.log(`Login Attempt: `, email, password);
+});
 
 export default authController;
