@@ -7,17 +7,17 @@ async function getAllMovies(filter = {})
 
 function getById(movieId)
 {
-    movieId = Number(movieId);
-    return movieRepository.getById(movieId);
+    const id = Number(movieId);
+    return movieRepository.getById(id);
 }
 
-function create(movieData, userId)
+async function create(movieData, userId)
 {
     movieData.rating = Number(movieData.rating);
     movieData.year = Number(movieData.year);
     movieData.userId = userId;
-    
-    return movieRepository.create(movieData);
+
+    return await movieRepository.create(movieData);
 }
 
 async function attachArtist(movieid, artistId)
@@ -30,9 +30,29 @@ async function attachArtist(movieid, artistId)
     return result;
 }
 
+export async function remove(movieId, userId)
+{
+    movieId = Number(movieId);
+    
+    const movie = await movieRepository.getById(movieId);
+
+    if(!movie)
+    {
+        throw new Error('Movie Not Found!');
+    }
+
+    if(userId !== movie.userId)
+    {
+        throw new Error('Unauthorized!');
+    }
+
+    await movieRepository.remove(movieId, userId);
+}
+
 export const movieService = {
     getAllMovies,
     getById,
     create,
     attachArtist,
+    remove,
 };

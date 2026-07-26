@@ -28,6 +28,10 @@ movieController.get('/search', async (req, res) => {
 movieController.get('/:movieId', async (req, res) => {
     const movieId = req.params.movieId;
     const userId = req?.user.id;
+    
+    if (!movieId || isNaN(Number(movieId)) || Number(movieId) <= 0) {
+        return res.status(404).render('404');
+    }
 
     const movie = await movieService.getById(movieId);
 
@@ -56,6 +60,15 @@ movieController.post('/:movieId/attach', isAuth, async (req, res) => {
     await movieService.attachArtist(movieId, artistId);
 
     res.redirect(`/movies/${movieId}`);
+});
+
+movieController.get('/:movieId/delete', isAuth, async (req, res) => {
+    const movieId = Number(req.params.movieId)
+    const userId = req.user.id;
+
+    await movieService.remove(movieId, userId);
+
+    res.redirect('/');
 });
 
 export default movieController;

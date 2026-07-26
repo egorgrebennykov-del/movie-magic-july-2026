@@ -1,22 +1,6 @@
 import fs from 'fs/promises';
 import prisma from '../lib/prisma.js';
 
-async function readDb(collection) {
-    const content = await fs.readFile(new URL('../db.json', import.meta.url), { encoding: 'utf-8' });
-    const db = JSON.parse(content);
-
-    if (collection && !Object.prototype.hasOwnProperty.call(db, collection)) {
-        throw new Error('No collection');
-    }
-
-    return collection ? db[collection] : db;
-}
-
-async function writeDb(db) {
-    const content = JSON.stringify(db, null, 2);
-    await fs.writeFile(new URL('../db.json', import.meta.url), content, { encoding: 'utf-8' });
-}
-
 export async function getAll(filter = {}) {
     const movies = await prisma.movie.findMany({
         where: {
@@ -70,11 +54,21 @@ async function attachArtist(movieId, artistId)
     return result;
 }
 
+export async function remove(movieId, userId)
+{
+    const result = await prisma.movie.delete({
+        where: { id: movieId, userId: userId}
+    });
+
+    return result;
+}
+
 const movieRepository = {
     getAll,
     getById,
     create,
-    attachArtist
+    attachArtist,
+    remove,
 };
 
 export default movieRepository;
