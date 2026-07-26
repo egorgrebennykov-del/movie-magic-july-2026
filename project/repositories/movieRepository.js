@@ -19,7 +19,7 @@ export async function getAll(filter = {}) {
     return movies;
 }
 
-async function getById(movieId) {
+export async function getById(movieId) {
     const movie = await prisma.movie.findUnique({
         where: { id: movieId },
         include: { cast: true }
@@ -32,7 +32,7 @@ async function getById(movieId) {
     return movie;
 }
 
-async function create(movieData) {
+export async function create(movieData) {
     const movie = await prisma.movie.create({
         data: movieData,
     });
@@ -40,7 +40,7 @@ async function create(movieData) {
     return movie;
 }
 
-async function attachArtist(movieId, artistId)
+export async function attachArtist(movieId, artistId)
 {
     const result = await prisma.movie.update({
         where: {id: movieId},
@@ -63,12 +63,23 @@ export async function remove(movieId, userId)
     return result;
 }
 
+export async function edit(movieId, userId, movieData)
+{
+    const result = await prisma.movie.update({
+        where: { id: movieId, userId: userId },
+        data: movieData
+    });
+
+    return result;
+}
+
 const movieRepository = {
     getAll,
     getById,
     create,
     attachArtist,
     remove,
+    edit,
 };
 
 export default movieRepository;

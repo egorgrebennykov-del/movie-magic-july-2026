@@ -1,17 +1,17 @@
 import movieRepository from "../repositories/movieRepository.js";
 
-async function getAllMovies(filter = {})
+export async function getAllMovies(filter = {})
 {
     return await movieRepository.getAll(filter);
 }
 
-function getById(movieId)
+export async function getById(movieId)
 {
     const id = Number(movieId);
-    return movieRepository.getById(id);
+    return await movieRepository.getById(id);
 }
 
-async function create(movieData, userId)
+export async function create(movieData, userId)
 {
     movieData.rating = Number(movieData.rating);
     movieData.year = Number(movieData.year);
@@ -20,7 +20,7 @@ async function create(movieData, userId)
     return await movieRepository.create(movieData);
 }
 
-async function attachArtist(movieid, artistId)
+export async function attachArtist(movieid, artistId)
 {
     movieid = Number(movieid);
     artistId = Number(artistId);
@@ -49,10 +49,22 @@ export async function remove(movieId, userId)
     await movieRepository.remove(movieId, userId);
 }
 
+export async function edit(movieId, userId, movieData)
+{
+    movieData.rating = Number(movieData.rating);
+    movieData.year = Number(movieData.year);
+    movieData.userId = userId;
+
+    const result = await movieRepository.edit(movieId, userId, movieData);
+
+    return result;
+}
+
 export const movieService = {
     getAllMovies,
     getById,
     create,
     attachArtist,
     remove,
+    edit,
 };
