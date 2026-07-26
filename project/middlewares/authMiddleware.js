@@ -14,7 +14,7 @@ export function authMiddleware(req, res, next) {
         res.locals.user = decodedToken;
     } catch (err) {
         res.clearCookie('auth');
-        
+
         return res.redirect('/auth/login');
     }
 
