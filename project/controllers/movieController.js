@@ -27,9 +27,13 @@ movieController.get('/search', async (req, res) => {
 
 movieController.get('/:movieId', async (req, res) => {
     const movieId = req.params.movieId;
+    const userId = req?.user.id;
+
     const movie = await movieService.getById(movieId);
 
-    res.render('movies/details', { movie, pageTitle: 'Details' });
+    const isOwner = movie.userId && movie.userId === userId;
+
+    res.render('movies/details', { movie, isOwner, pageTitle: 'Details' });
 });
 
 movieController.get('/:movieId/attach', isAuth, async (req, res) => {
