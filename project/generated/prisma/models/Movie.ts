@@ -31,6 +31,7 @@ export type MovieAvgAggregateOutputType = {
   year: number | null
   rating: number | null
   artistId: number | null
+  userId: number | null
 }
 
 export type MovieSumAggregateOutputType = {
@@ -38,6 +39,7 @@ export type MovieSumAggregateOutputType = {
   year: number | null
   rating: number | null
   artistId: number | null
+  userId: number | null
 }
 
 export type MovieMinAggregateOutputType = {
@@ -53,6 +55,7 @@ export type MovieMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   artistId: number | null
+  userId: number | null
 }
 
 export type MovieMaxAggregateOutputType = {
@@ -68,6 +71,7 @@ export type MovieMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   artistId: number | null
+  userId: number | null
 }
 
 export type MovieCountAggregateOutputType = {
@@ -83,6 +87,7 @@ export type MovieCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   artistId: number
+  userId: number
   _all: number
 }
 
@@ -92,6 +97,7 @@ export type MovieAvgAggregateInputType = {
   year?: true
   rating?: true
   artistId?: true
+  userId?: true
 }
 
 export type MovieSumAggregateInputType = {
@@ -99,6 +105,7 @@ export type MovieSumAggregateInputType = {
   year?: true
   rating?: true
   artistId?: true
+  userId?: true
 }
 
 export type MovieMinAggregateInputType = {
@@ -114,6 +121,7 @@ export type MovieMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   artistId?: true
+  userId?: true
 }
 
 export type MovieMaxAggregateInputType = {
@@ -129,6 +137,7 @@ export type MovieMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   artistId?: true
+  userId?: true
 }
 
 export type MovieCountAggregateInputType = {
@@ -144,6 +153,7 @@ export type MovieCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   artistId?: true
+  userId?: true
   _all?: true
 }
 
@@ -246,6 +256,7 @@ export type MovieGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   artistId: number | null
+  userId: number | null
   _count: MovieCountAggregateOutputType | null
   _avg: MovieAvgAggregateOutputType | null
   _sum: MovieSumAggregateOutputType | null
@@ -284,6 +295,7 @@ export type MovieWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   artistId?: Prisma.IntNullableFilter<"Movie"> | number | null
+  userId?: Prisma.IntNullableFilter<"Movie"> | number | null
   cast?: Prisma.ArtistListRelationFilter
 }
 
@@ -300,6 +312,7 @@ export type MovieOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   artistId?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   cast?: Prisma.ArtistOrderByRelationAggregateInput
 }
 
@@ -319,6 +332,7 @@ export type MovieWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   artistId?: Prisma.IntNullableFilter<"Movie"> | number | null
+  userId?: Prisma.IntNullableFilter<"Movie"> | number | null
   cast?: Prisma.ArtistListRelationFilter
 }, "id">
 
@@ -335,6 +349,7 @@ export type MovieOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   artistId?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MovieCountOrderByAggregateInput
   _avg?: Prisma.MovieAvgOrderByAggregateInput
   _max?: Prisma.MovieMaxOrderByAggregateInput
@@ -358,6 +373,7 @@ export type MovieScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Movie"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Movie"> | Date | string
   artistId?: Prisma.IntNullableWithAggregatesFilter<"Movie"> | number | null
+  userId?: Prisma.IntNullableWithAggregatesFilter<"Movie"> | number | null
 }
 
 export type MovieCreateInput = {
@@ -372,6 +388,7 @@ export type MovieCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   artistId?: number | null
+  userId?: number | null
   cast?: Prisma.ArtistCreateNestedManyWithoutMoviesInput
 }
 
@@ -388,6 +405,7 @@ export type MovieUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   artistId?: number | null
+  userId?: number | null
   cast?: Prisma.ArtistUncheckedCreateNestedManyWithoutMoviesInput
 }
 
@@ -403,6 +421,7 @@ export type MovieUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   artistId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cast?: Prisma.ArtistUpdateManyWithoutMoviesNestedInput
 }
 
@@ -419,6 +438,7 @@ export type MovieUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   artistId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cast?: Prisma.ArtistUncheckedUpdateManyWithoutMoviesNestedInput
 }
 
@@ -435,6 +455,7 @@ export type MovieCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   artistId?: number | null
+  userId?: number | null
 }
 
 export type MovieUpdateManyMutationInput = {
@@ -449,6 +470,7 @@ export type MovieUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   artistId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type MovieUncheckedUpdateManyInput = {
@@ -464,6 +486,7 @@ export type MovieUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   artistId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type MovieCountOrderByAggregateInput = {
@@ -479,6 +502,7 @@ export type MovieCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   artistId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MovieAvgOrderByAggregateInput = {
@@ -486,6 +510,7 @@ export type MovieAvgOrderByAggregateInput = {
   year?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   artistId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MovieMaxOrderByAggregateInput = {
@@ -501,6 +526,7 @@ export type MovieMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   artistId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MovieMinOrderByAggregateInput = {
@@ -516,6 +542,7 @@ export type MovieMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   artistId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MovieSumOrderByAggregateInput = {
@@ -523,6 +550,7 @@ export type MovieSumOrderByAggregateInput = {
   year?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   artistId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MovieListRelationFilter = {
@@ -621,6 +649,7 @@ export type MovieCreateWithoutCastInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   artistId?: number | null
+  userId?: number | null
 }
 
 export type MovieUncheckedCreateWithoutCastInput = {
@@ -636,6 +665,7 @@ export type MovieUncheckedCreateWithoutCastInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   artistId?: number | null
+  userId?: number | null
 }
 
 export type MovieCreateOrConnectWithoutCastInput = {
@@ -675,6 +705,7 @@ export type MovieScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Movie"> | Date | string
   artistId?: Prisma.IntNullableFilter<"Movie"> | number | null
+  userId?: Prisma.IntNullableFilter<"Movie"> | number | null
 }
 
 export type MovieUpdateWithoutCastInput = {
@@ -689,6 +720,7 @@ export type MovieUpdateWithoutCastInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   artistId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type MovieUncheckedUpdateWithoutCastInput = {
@@ -704,6 +736,7 @@ export type MovieUncheckedUpdateWithoutCastInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   artistId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type MovieUncheckedUpdateManyWithoutCastInput = {
@@ -719,6 +752,7 @@ export type MovieUncheckedUpdateManyWithoutCastInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   artistId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -765,6 +799,7 @@ export type MovieSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdAt?: boolean
   updatedAt?: boolean
   artistId?: boolean
+  userId?: boolean
   cast?: boolean | Prisma.Movie$castArgs<ExtArgs>
   _count?: boolean | Prisma.MovieCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movie"]>
@@ -782,6 +817,7 @@ export type MovieSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   createdAt?: boolean
   updatedAt?: boolean
   artistId?: boolean
+  userId?: boolean
 }, ExtArgs["result"]["movie"]>
 
 export type MovieSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -797,6 +833,7 @@ export type MovieSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   createdAt?: boolean
   updatedAt?: boolean
   artistId?: boolean
+  userId?: boolean
 }, ExtArgs["result"]["movie"]>
 
 export type MovieSelectScalar = {
@@ -812,9 +849,10 @@ export type MovieSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   artistId?: boolean
+  userId?: boolean
 }
 
-export type MovieOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "category" | "genre" | "director" | "year" | "imageUrl" | "rating" | "description" | "createdAt" | "updatedAt" | "artistId", ExtArgs["result"]["movie"]>
+export type MovieOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "category" | "genre" | "director" | "year" | "imageUrl" | "rating" | "description" | "createdAt" | "updatedAt" | "artistId" | "userId", ExtArgs["result"]["movie"]>
 export type MovieInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cast?: boolean | Prisma.Movie$castArgs<ExtArgs>
   _count?: boolean | Prisma.MovieCountOutputTypeDefaultArgs<ExtArgs>
@@ -840,6 +878,7 @@ export type $MoviePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     createdAt: Date
     updatedAt: Date
     artistId: number | null
+    userId: number | null
   }, ExtArgs["result"]["movie"]>
   composites: {}
 }
@@ -1276,6 +1315,7 @@ export interface MovieFieldRefs {
   readonly createdAt: Prisma.FieldRef<"Movie", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Movie", 'DateTime'>
   readonly artistId: Prisma.FieldRef<"Movie", 'Int'>
+  readonly userId: Prisma.FieldRef<"Movie", 'Int'>
 }
     
 

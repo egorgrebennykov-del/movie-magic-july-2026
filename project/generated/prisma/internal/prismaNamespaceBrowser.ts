@@ -84,7 +84,8 @@ export const MovieScalarFieldEnum = {
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  artistId: 'artistId'
+  artistId: 'artistId',
+  userId: 'userId'
 } as const
 
 export type MovieScalarFieldEnum = (typeof MovieScalarFieldEnum)[keyof typeof MovieScalarFieldEnum]
