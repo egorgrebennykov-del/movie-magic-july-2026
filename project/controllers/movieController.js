@@ -27,11 +27,7 @@ movieController.get('/search', async (req, res) => {
 
 movieController.get('/:movieId', async (req, res) => {
     const movieId = req.params.movieId;
-    const userId = req?.user.id;
-    
-    if (!movieId || isNaN(Number(movieId)) || Number(movieId) <= 0) {
-        return res.status(404).render('404');
-    }
+    const userId = req?.user?.id;
 
     const movie = await movieService.getById(movieId);
 
