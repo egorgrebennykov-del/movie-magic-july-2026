@@ -27,7 +27,8 @@ movieController.post('/create', isAuth, async (req, res) => {
         {
             const errors = z.flattenError(error).fieldErrors;
             const categoryOptions = prepareCategoryViewData(newMovie);
-            res.status(400).render('movies/create', { movie: req.body, errors, categoryOptions, pageTitle: 'Create' });
+            const firstError = Object.values(errors).flat().at(0);
+            res.status(400).render('movies/create', { movie: req.body, error: firstError, categoryOptions, pageTitle: 'Create' });
         }
     }
 });
