@@ -13,8 +13,6 @@ export async function getById(movieId)
 
 export async function create(movieData, userId)
 {
-    movieData.rating = Number(movieData.rating);
-    movieData.year = Number(movieData.year);
     movieData.userId = userId;
 
     return await movieRepository.create(movieData);

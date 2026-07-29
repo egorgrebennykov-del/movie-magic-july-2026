@@ -7,7 +7,8 @@ import cookieParser from 'cookie-parser';
 const app = express();
 
 app.engine('hbs', engine({
-  extname: 'hbs'
+  extname: 'hbs',
+  partialsDir: ['./views/partials', './partials']
 }));
 app.set('view engine', 'hbs');
 app.set('views', './views');
