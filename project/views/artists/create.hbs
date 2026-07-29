@@ -4,28 +4,28 @@
             <h2>"You're gonna need a bigger boat." — "Jaws," 1975.</h2>
         </div>
 
-        <form method="post" class="createCastForm">
+        <form action="/artists/create" method="post" class="createCastForm">
             <h2>Add Artist</h2>
             <ul class="noBullet">
                 <li>
                     <label for="name">Name:</label>
-                    <input type="text" class="inputFields" id="name" name="name" value="" />
+                    <input type="text" class="inputFields" id="name" name="name" value="{{artist.name}}" />
+                    {{> showErrors errors=errors.name}}
                 </li>
                 <li>
                     <label for="age">Age:</label>
-                    <input type="number" class="inputFields" id="age" name="age" value="" />
+                    <input type="number" class="inputFields" id="age" name="age" value="{{artist.age}}" />
+                    {{> showErrors errors=errors.age}}
                 </li>
                 <li>
                     <label for="born">Born:</label>
-                    <input type="text" class="inputFields" id="born" name="born" value="" />
-                </li>
-                <li>
-                    <label for="name-in-movie">Name in Movie:</label>
-                    <input type="text" class="inputFields" id="name-in-movie" name="" value="" disabled/>
+                    <input type="text" class="inputFields" id="born" name="born" value="{{artist.born}}" />
+                    {{> showErrors errors=errors.born}}
                 </li>
                 <li>
                     <label for="image">Artist Image:</label>
-                    <input type="text" class="inputFields" id="image" name="imageUrl" value="" />
+                    <input type="text" class="inputFields" id="image" name="imageUrl" value="{{artist.imageUrl}}" />
+                    {{> showErrors errors=errors.imageUrl}}
                 </li>
                 <li id="center-btn">
                     <button id="create-btn">Add Artist</button>
