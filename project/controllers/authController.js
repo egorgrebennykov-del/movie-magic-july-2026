@@ -1,4 +1,5 @@
 import * as z from 'zod';
+import prisma from '../lib/prisma.js';
 import { Router } from 'express'
 import authService from '../services/authService.js';
 import { isGuest } from '../middlewares/authMiddleware.js';
@@ -46,11 +47,23 @@ authController.get('/login', isGuest, (req, res) => {
 authController.post('/login', isGuest, async (req, res) => {
     const { email, password } = req.body;
 
-    const token = await authService.login({email, password});
+    try {
+        const token = await authService.login({ email, password });
 
-    res.cookie('auth', token, { httpOnly: true });
+        res.cookie('auth', token, { httpOnly: true });
 
-    res.redirect('/');
+        return res.redirect('/');
+    } catch (error) {
+        const errors = {
+            email: [getErrorMessage(error)]
+        };
+
+        return res.status(400).render('auth/login', {
+            user: req.body,
+            errors,
+            pageTitle: 'Login'
+        });
+    }
 });
 
 authController.get('/logout', isAuth, (req, res) => {
