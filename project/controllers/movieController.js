@@ -116,15 +116,33 @@ movieController.get('/:movieId/edit', isAuth, async (req, res) => {
     res.render('movies/edit', { movie, categoryOptions, pageTitle: 'Edit' });
 });
 
-movieController.post('/:movieId/edit', async (req, res) => {
+movieController.post('/:movieId/edit', isAuth, async (req, res) => {
     const movieId = Number(req.params.movieId);
     const userId = req.user.id;
 
     const movieData = req.body;
 
-    await movieService.edit(movieId, userId, movieData);
+    try {
+        const moviePayload = createMovieSchema.parse(movieData);
 
-    res.redirect(`/movies/${movieId}`);
+        await movieService.edit(movieId, userId, moviePayload);
+
+        res.redirect(`/movies/${movieId}`);
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            const errors = z.flattenError(error).fieldErrors;
+            const categoryOptions = prepareCategoryViewData(movieData);
+
+            return res.status(400).render('movies/edit', {
+                movie: movieData,
+                errors,
+                categoryOptions,
+                pageTitle: 'Edit'
+            });
+        }
+
+        throw error;
+    }
 });
 
 export default movieController;
