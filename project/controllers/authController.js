@@ -1,7 +1,10 @@
+import * as z from 'zod';
 import { Router } from 'express'
 import authService from '../services/authService.js';
 import { isGuest } from '../middlewares/authMiddleware.js';
 import { isAuth } from '../middlewares/authMiddleware.js';
+import { registerSchema } from '../schemas/userSchema.js';
+import { getErrorMessage } from '../utils/errorUtils.js';
 
 const authController = Router();
 
@@ -10,13 +13,30 @@ authController.get('/register', isGuest, (req, res) => {
 });
 
 authController.post('/register', isGuest, async (req, res) => {
-    const { email, password, repeatPassword } = req.body;
+    const newUser = req.body;
 
-    const token = await authService.register({email, password, repeatPassword});
+    try {
+        const userData = registerSchema.parse(newUser);
 
-    res.cookie('auth', token, { httpOnly: true});
+        const token = await authService.register(userData);
 
-    res.redirect('/');
+        res.cookie('auth', token, { httpOnly: true });
+
+        return res.redirect('/');
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            const errors = z.flattenError(error).fieldErrors;
+
+            return res.status(400).render('auth/register', {
+                user: req.body,
+                errors,
+                pageTitle: 'Register'
+            });
+        }
+
+        const message = getErrorMessage(error);
+        return res.status(500).send(message);
+    }
 });
 
 authController.get('/login', isGuest, (req, res) => {
