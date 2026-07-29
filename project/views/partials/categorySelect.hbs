@@ -5,3 +5,8 @@
     <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
     {{/each}}
 </select>
+{{#if errors}}
+    {{#each errors}}
+    <p class="error" style="color: rgb(164, 21, 21)">{{this}}</p>
+    {{/each}}
+{{/if}}
