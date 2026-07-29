@@ -3,6 +3,7 @@ import { Router } from "express";
 import { artistService } from "../services/artistService.js";
 import { isAuth } from "../middlewares/authMiddleware.js";
 import { createArtistSchema } from "../schemas/artistSchema.js";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const artistsController = Router();
 
@@ -30,7 +31,8 @@ artistsController.post('/create', isAuth, async (req, res) => {
             });
         }
 
-        throw error;
+        const message = getErrorMessage(error);
+        return res.status(500).send(message);
     }
 });
 
