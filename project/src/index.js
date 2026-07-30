@@ -3,12 +3,14 @@ import { engine } from 'express-handlebars';
 import routes from '../routes.js';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 import cookieParser from 'cookie-parser';
+import * as helpers from '../helpers';
 
 const app = express();
 
 app.engine('hbs', engine({
   extname: 'hbs',
-  partialsDir: ['./views/partials', './partials']
+  partialsDir: ['./views/partials', './partials'],
+  helpers
 }));
 app.set('view engine', 'hbs');
 app.set('views', './views');

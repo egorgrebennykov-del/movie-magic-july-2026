@@ -8,7 +8,7 @@ import { getErrorMessage } from "../utils/errorUtils.js";
 const artistsController = Router();
 
 artistsController.get('/create', isAuth, (req, res) => {
-    res.render('artists/create', { pageTitle: 'Create' });
+    res.render('artists/create');
 });
 
 artistsController.post('/create', isAuth, async (req, res) => {
@@ -26,8 +26,7 @@ artistsController.post('/create', isAuth, async (req, res) => {
 
             return res.status(400).render('artists/create', {
                 artist: req.body,
-                errors,
-                pageTitle: 'Create'
+                errors
             });
         }
 

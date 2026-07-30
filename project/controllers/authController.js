@@ -10,7 +10,7 @@ import { getErrorMessage } from '../utils/errorUtils.js';
 const authController = Router();
 
 authController.get('/register', isGuest, (req, res) => {
-    res.render('auth/register', { pageTitle: 'Register' });
+    res.render('auth/register');
 });
 
 authController.post('/register', isGuest, async (req, res) => {
@@ -30,8 +30,7 @@ authController.post('/register', isGuest, async (req, res) => {
 
             return res.status(400).render('auth/register', {
                 user: req.body,
-                errors,
-                pageTitle: 'Register'
+                errors
             });
         }
 
@@ -41,7 +40,7 @@ authController.post('/register', isGuest, async (req, res) => {
 });
 
 authController.get('/login', isGuest, (req, res) => {
-    res.render('auth/login', { pageTitle: 'Login' });
+    res.render('auth/login');
 });
 
 authController.post('/login', isGuest, async (req, res) => {
@@ -60,8 +59,7 @@ authController.post('/login', isGuest, async (req, res) => {
 
         return res.status(400).render('auth/login', {
             user: req.body,
-            errors,
-            pageTitle: 'Login'
+            errors
         });
     }
 });

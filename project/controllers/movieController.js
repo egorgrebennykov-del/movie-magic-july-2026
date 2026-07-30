@@ -10,7 +10,7 @@ const movieController = Router();
 
 movieController.get('/create', isAuth, (req, res) => {
     const categoryOptions = prepareCategoryViewData({ category: '' });
-    res.render('movies/create', { pageTitle: 'Create', categoryOptions });
+    res.render('movies/create', { categoryOptions });
 });
 
 movieController.post('/create', isAuth, async (req, res) => {
@@ -31,8 +31,7 @@ movieController.post('/create', isAuth, async (req, res) => {
             return res.status(400).render('movies/create', {
                 movie: req.body,
                 errors,
-                categoryOptions,
-                pageTitle: 'Create'
+                categoryOptions
             });
         }
 
@@ -45,7 +44,7 @@ movieController.get('/search', async (req, res) => {
     const filter = req.query;
 
     const movies = await movieService.getAllMovies(filter);
-    res.render('movies/search', { movies, filter, pageTitle: 'Search' });
+    res.render('movies/search', { movies, filter });
 });
 
 movieController.get('/:movieId', async (req, res) => {
@@ -56,7 +55,7 @@ movieController.get('/:movieId', async (req, res) => {
 
     const isOwner = movie.userId && movie.userId === userId;
 
-    res.render('movies/details', { movie, isOwner, pageTitle: 'Details' });
+    res.render('movies/details', { movie, isOwner });
 });
 
 movieController.get('/:movieId/attach', isAuth, async (req, res) => {
@@ -65,7 +64,7 @@ movieController.get('/:movieId/attach', isAuth, async (req, res) => {
 
     const artists = await artistService.getAll({ exclude: movie.cast.map(artist => artist.id) });
 
-    res.render('movies/attach', { movie, artists, pageTitle: 'Attach Movie' });
+    res.render('movies/attach', { movie, artists });
 });
 
 movieController.post('/:movieId/attach', isAuth, async (req, res) => {
@@ -121,7 +120,7 @@ movieController.get('/:movieId/edit', isAuth, async (req, res) => {
 
     const categoryOptions = prepareCategoryViewData(movie);
 
-    res.render('movies/edit', { movie, categoryOptions, pageTitle: 'Edit' });
+    res.render('movies/edit', { movie, categoryOptions });
 });
 
 movieController.post('/:movieId/edit', isAuth, async (req, res) => {
@@ -144,8 +143,7 @@ movieController.post('/:movieId/edit', isAuth, async (req, res) => {
             return res.status(400).render('movies/edit', {
                 movie: movieData,
                 errors,
-                categoryOptions,
-                pageTitle: 'Edit'
+                categoryOptions
             });
         }
 

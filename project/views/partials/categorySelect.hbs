@@ -2,7 +2,7 @@
 <select id="category" class="inputFields" name="category">
     <option value="">Select Category</option>
     {{#each categoryOptions}}
-    <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+    <option value="{{value}}" {{isSelected}}>{{label}}</option>
     {{/each}}
 </select>
 {{#if errors}}
