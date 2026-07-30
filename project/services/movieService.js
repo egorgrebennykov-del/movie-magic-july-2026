@@ -18,12 +18,12 @@ export async function create(movieData, userId)
     return await movieRepository.create(movieData);
 }
 
-export async function attachArtist(movieid, artistId)
+export async function attachArtist(movieid, artistId, character)
 {
     movieid = Number(movieid);
     artistId = Number(artistId);
 
-    const result = await movieRepository.attachArtist(movieid, artistId);
+    const result = await movieRepository.attachArtist(movieid, artistId, character);
 
     return result;
 }

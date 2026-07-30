@@ -2,7 +2,7 @@
 
 <section id="attachCast">
     <div class="attachCastSection">
-    <h1>Attach New Cast</h1>
+    <h1>Attach New Artist</h1>
     <div class="attach-form">
         <h2>{{movie.title}}</h2>
         <img class="movie" src="{{movie.imageUrl}}" alt="{{movie.title}}">
@@ -14,6 +14,10 @@
                     <option value="{{this.id}}">{{this.name}}</option>
                 {{/each}}
             </select>
+            <div style="width: 50%">
+                <label for="name-in-movie">Name in Movie</label>
+                <input type="text" class="inputFields" id="character" name="character">
+            </div>
             <div id="center-btn">
                 <button id="create-btn">Add Cast</button>
             </div>

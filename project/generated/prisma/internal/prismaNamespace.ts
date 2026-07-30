@@ -399,6 +399,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Movie: 'Movie',
   Artist: 'Artist',
+  MovieArtist: 'MovieArtist',
   User: 'User'
 } as const
 
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "movie" | "artist" | "user"
+    modelProps: "movie" | "artist" | "movieArtist" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -567,6 +568,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MovieArtist: {
+      payload: Prisma.$MovieArtistPayload<ExtArgs>
+      fields: Prisma.MovieArtistFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MovieArtistFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MovieArtistFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload>
+        }
+        findFirst: {
+          args: Prisma.MovieArtistFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MovieArtistFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload>
+        }
+        findMany: {
+          args: Prisma.MovieArtistFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload>[]
+        }
+        create: {
+          args: Prisma.MovieArtistCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload>
+        }
+        createMany: {
+          args: Prisma.MovieArtistCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MovieArtistCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload>[]
+        }
+        delete: {
+          args: Prisma.MovieArtistDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload>
+        }
+        update: {
+          args: Prisma.MovieArtistUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload>
+        }
+        deleteMany: {
+          args: Prisma.MovieArtistDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MovieArtistUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MovieArtistUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload>[]
+        }
+        upsert: {
+          args: Prisma.MovieArtistUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MovieArtistPayload>
+        }
+        aggregate: {
+          args: Prisma.MovieArtistAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMovieArtist>
+        }
+        groupBy: {
+          args: Prisma.MovieArtistGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MovieArtistGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MovieArtistCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MovieArtistCountAggregateOutputType> | number
+        }
+      }
+    }
     User: {
       payload: Prisma.$UserPayload<ExtArgs>
       fields: Prisma.UserFieldRefs
@@ -692,7 +767,6 @@ export const MovieScalarFieldEnum = {
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  artistId: 'artistId',
   userId: 'userId'
 } as const
 
@@ -710,6 +784,15 @@ export const ArtistScalarFieldEnum = {
 } as const
 
 export type ArtistScalarFieldEnum = (typeof ArtistScalarFieldEnum)[keyof typeof ArtistScalarFieldEnum]
+
+
+export const MovieArtistScalarFieldEnum = {
+  movieId: 'movieId',
+  artistId: 'artistId',
+  character: 'character'
+} as const
+
+export type MovieArtistScalarFieldEnum = (typeof MovieArtistScalarFieldEnum)[keyof typeof MovieArtistScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -961,6 +1044,7 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   movie?: Prisma.MovieOmit
   artist?: Prisma.ArtistOmit
+  movieArtist?: Prisma.MovieArtistOmit
   user?: Prisma.UserOmit
 }
 

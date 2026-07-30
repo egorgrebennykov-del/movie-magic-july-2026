@@ -236,7 +236,7 @@ export type ArtistWhereInput = {
   imageUrl?: Prisma.StringFilter<"Artist"> | string
   createdAt?: Prisma.DateTimeFilter<"Artist"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Artist"> | Date | string
-  movies?: Prisma.MovieListRelationFilter
+  movies?: Prisma.MovieArtistListRelationFilter
 }
 
 export type ArtistOrderByWithRelationInput = {
@@ -247,7 +247,7 @@ export type ArtistOrderByWithRelationInput = {
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  movies?: Prisma.MovieOrderByRelationAggregateInput
+  movies?: Prisma.MovieArtistOrderByRelationAggregateInput
 }
 
 export type ArtistWhereUniqueInput = Prisma.AtLeast<{
@@ -261,7 +261,7 @@ export type ArtistWhereUniqueInput = Prisma.AtLeast<{
   imageUrl?: Prisma.StringFilter<"Artist"> | string
   createdAt?: Prisma.DateTimeFilter<"Artist"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Artist"> | Date | string
-  movies?: Prisma.MovieListRelationFilter
+  movies?: Prisma.MovieArtistListRelationFilter
 }, "id">
 
 export type ArtistOrderByWithAggregationInput = {
@@ -299,7 +299,7 @@ export type ArtistCreateInput = {
   imageUrl: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  movies?: Prisma.MovieCreateNestedManyWithoutCastInput
+  movies?: Prisma.MovieArtistCreateNestedManyWithoutArtistInput
 }
 
 export type ArtistUncheckedCreateInput = {
@@ -310,7 +310,7 @@ export type ArtistUncheckedCreateInput = {
   imageUrl: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutCastInput
+  movies?: Prisma.MovieArtistUncheckedCreateNestedManyWithoutArtistInput
 }
 
 export type ArtistUpdateInput = {
@@ -320,7 +320,7 @@ export type ArtistUpdateInput = {
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  movies?: Prisma.MovieUpdateManyWithoutCastNestedInput
+  movies?: Prisma.MovieArtistUpdateManyWithoutArtistNestedInput
 }
 
 export type ArtistUncheckedUpdateInput = {
@@ -331,7 +331,7 @@ export type ArtistUncheckedUpdateInput = {
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  movies?: Prisma.MovieUncheckedUpdateManyWithoutCastNestedInput
+  movies?: Prisma.MovieArtistUncheckedUpdateManyWithoutArtistNestedInput
 }
 
 export type ArtistCreateManyInput = {
@@ -361,16 +361,6 @@ export type ArtistUncheckedUpdateManyInput = {
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ArtistListRelationFilter = {
-  every?: Prisma.ArtistWhereInput
-  some?: Prisma.ArtistWhereInput
-  none?: Prisma.ArtistWhereInput
-}
-
-export type ArtistOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type ArtistCountOrderByAggregateInput = {
@@ -413,42 +403,23 @@ export type ArtistSumOrderByAggregateInput = {
   age?: Prisma.SortOrder
 }
 
-export type ArtistCreateNestedManyWithoutMoviesInput = {
-  create?: Prisma.XOR<Prisma.ArtistCreateWithoutMoviesInput, Prisma.ArtistUncheckedCreateWithoutMoviesInput> | Prisma.ArtistCreateWithoutMoviesInput[] | Prisma.ArtistUncheckedCreateWithoutMoviesInput[]
-  connectOrCreate?: Prisma.ArtistCreateOrConnectWithoutMoviesInput | Prisma.ArtistCreateOrConnectWithoutMoviesInput[]
-  connect?: Prisma.ArtistWhereUniqueInput | Prisma.ArtistWhereUniqueInput[]
+export type ArtistScalarRelationFilter = {
+  is?: Prisma.ArtistWhereInput
+  isNot?: Prisma.ArtistWhereInput
 }
 
-export type ArtistUncheckedCreateNestedManyWithoutMoviesInput = {
-  create?: Prisma.XOR<Prisma.ArtistCreateWithoutMoviesInput, Prisma.ArtistUncheckedCreateWithoutMoviesInput> | Prisma.ArtistCreateWithoutMoviesInput[] | Prisma.ArtistUncheckedCreateWithoutMoviesInput[]
-  connectOrCreate?: Prisma.ArtistCreateOrConnectWithoutMoviesInput | Prisma.ArtistCreateOrConnectWithoutMoviesInput[]
-  connect?: Prisma.ArtistWhereUniqueInput | Prisma.ArtistWhereUniqueInput[]
+export type ArtistCreateNestedOneWithoutMoviesInput = {
+  create?: Prisma.XOR<Prisma.ArtistCreateWithoutMoviesInput, Prisma.ArtistUncheckedCreateWithoutMoviesInput>
+  connectOrCreate?: Prisma.ArtistCreateOrConnectWithoutMoviesInput
+  connect?: Prisma.ArtistWhereUniqueInput
 }
 
-export type ArtistUpdateManyWithoutMoviesNestedInput = {
-  create?: Prisma.XOR<Prisma.ArtistCreateWithoutMoviesInput, Prisma.ArtistUncheckedCreateWithoutMoviesInput> | Prisma.ArtistCreateWithoutMoviesInput[] | Prisma.ArtistUncheckedCreateWithoutMoviesInput[]
-  connectOrCreate?: Prisma.ArtistCreateOrConnectWithoutMoviesInput | Prisma.ArtistCreateOrConnectWithoutMoviesInput[]
-  upsert?: Prisma.ArtistUpsertWithWhereUniqueWithoutMoviesInput | Prisma.ArtistUpsertWithWhereUniqueWithoutMoviesInput[]
-  set?: Prisma.ArtistWhereUniqueInput | Prisma.ArtistWhereUniqueInput[]
-  disconnect?: Prisma.ArtistWhereUniqueInput | Prisma.ArtistWhereUniqueInput[]
-  delete?: Prisma.ArtistWhereUniqueInput | Prisma.ArtistWhereUniqueInput[]
-  connect?: Prisma.ArtistWhereUniqueInput | Prisma.ArtistWhereUniqueInput[]
-  update?: Prisma.ArtistUpdateWithWhereUniqueWithoutMoviesInput | Prisma.ArtistUpdateWithWhereUniqueWithoutMoviesInput[]
-  updateMany?: Prisma.ArtistUpdateManyWithWhereWithoutMoviesInput | Prisma.ArtistUpdateManyWithWhereWithoutMoviesInput[]
-  deleteMany?: Prisma.ArtistScalarWhereInput | Prisma.ArtistScalarWhereInput[]
-}
-
-export type ArtistUncheckedUpdateManyWithoutMoviesNestedInput = {
-  create?: Prisma.XOR<Prisma.ArtistCreateWithoutMoviesInput, Prisma.ArtistUncheckedCreateWithoutMoviesInput> | Prisma.ArtistCreateWithoutMoviesInput[] | Prisma.ArtistUncheckedCreateWithoutMoviesInput[]
-  connectOrCreate?: Prisma.ArtistCreateOrConnectWithoutMoviesInput | Prisma.ArtistCreateOrConnectWithoutMoviesInput[]
-  upsert?: Prisma.ArtistUpsertWithWhereUniqueWithoutMoviesInput | Prisma.ArtistUpsertWithWhereUniqueWithoutMoviesInput[]
-  set?: Prisma.ArtistWhereUniqueInput | Prisma.ArtistWhereUniqueInput[]
-  disconnect?: Prisma.ArtistWhereUniqueInput | Prisma.ArtistWhereUniqueInput[]
-  delete?: Prisma.ArtistWhereUniqueInput | Prisma.ArtistWhereUniqueInput[]
-  connect?: Prisma.ArtistWhereUniqueInput | Prisma.ArtistWhereUniqueInput[]
-  update?: Prisma.ArtistUpdateWithWhereUniqueWithoutMoviesInput | Prisma.ArtistUpdateWithWhereUniqueWithoutMoviesInput[]
-  updateMany?: Prisma.ArtistUpdateManyWithWhereWithoutMoviesInput | Prisma.ArtistUpdateManyWithWhereWithoutMoviesInput[]
-  deleteMany?: Prisma.ArtistScalarWhereInput | Prisma.ArtistScalarWhereInput[]
+export type ArtistUpdateOneRequiredWithoutMoviesNestedInput = {
+  create?: Prisma.XOR<Prisma.ArtistCreateWithoutMoviesInput, Prisma.ArtistUncheckedCreateWithoutMoviesInput>
+  connectOrCreate?: Prisma.ArtistCreateOrConnectWithoutMoviesInput
+  upsert?: Prisma.ArtistUpsertWithoutMoviesInput
+  connect?: Prisma.ArtistWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ArtistUpdateToOneWithWhereWithoutMoviesInput, Prisma.ArtistUpdateWithoutMoviesInput>, Prisma.ArtistUncheckedUpdateWithoutMoviesInput>
 }
 
 export type ArtistCreateWithoutMoviesInput = {
@@ -475,33 +446,15 @@ export type ArtistCreateOrConnectWithoutMoviesInput = {
   create: Prisma.XOR<Prisma.ArtistCreateWithoutMoviesInput, Prisma.ArtistUncheckedCreateWithoutMoviesInput>
 }
 
-export type ArtistUpsertWithWhereUniqueWithoutMoviesInput = {
-  where: Prisma.ArtistWhereUniqueInput
+export type ArtistUpsertWithoutMoviesInput = {
   update: Prisma.XOR<Prisma.ArtistUpdateWithoutMoviesInput, Prisma.ArtistUncheckedUpdateWithoutMoviesInput>
   create: Prisma.XOR<Prisma.ArtistCreateWithoutMoviesInput, Prisma.ArtistUncheckedCreateWithoutMoviesInput>
+  where?: Prisma.ArtistWhereInput
 }
 
-export type ArtistUpdateWithWhereUniqueWithoutMoviesInput = {
-  where: Prisma.ArtistWhereUniqueInput
+export type ArtistUpdateToOneWithWhereWithoutMoviesInput = {
+  where?: Prisma.ArtistWhereInput
   data: Prisma.XOR<Prisma.ArtistUpdateWithoutMoviesInput, Prisma.ArtistUncheckedUpdateWithoutMoviesInput>
-}
-
-export type ArtistUpdateManyWithWhereWithoutMoviesInput = {
-  where: Prisma.ArtistScalarWhereInput
-  data: Prisma.XOR<Prisma.ArtistUpdateManyMutationInput, Prisma.ArtistUncheckedUpdateManyWithoutMoviesInput>
-}
-
-export type ArtistScalarWhereInput = {
-  AND?: Prisma.ArtistScalarWhereInput | Prisma.ArtistScalarWhereInput[]
-  OR?: Prisma.ArtistScalarWhereInput[]
-  NOT?: Prisma.ArtistScalarWhereInput | Prisma.ArtistScalarWhereInput[]
-  id?: Prisma.IntFilter<"Artist"> | number
-  name?: Prisma.StringFilter<"Artist"> | string
-  age?: Prisma.IntFilter<"Artist"> | number
-  born?: Prisma.StringFilter<"Artist"> | string
-  imageUrl?: Prisma.StringFilter<"Artist"> | string
-  createdAt?: Prisma.DateTimeFilter<"Artist"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Artist"> | Date | string
 }
 
 export type ArtistUpdateWithoutMoviesInput = {
@@ -514,16 +467,6 @@ export type ArtistUpdateWithoutMoviesInput = {
 }
 
 export type ArtistUncheckedUpdateWithoutMoviesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  age?: Prisma.IntFieldUpdateOperationsInput | number
-  born?: Prisma.StringFieldUpdateOperationsInput | string
-  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ArtistUncheckedUpdateManyWithoutMoviesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
@@ -560,7 +503,7 @@ export type ArtistCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
  * ArtistCountOutputType without action
  */
 export type ArtistCountOutputTypeCountMoviesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MovieWhereInput
+  where?: Prisma.MovieArtistWhereInput
 }
 
 
@@ -617,7 +560,7 @@ export type ArtistIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $ArtistPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Artist"
   objects: {
-    movies: Prisma.$MoviePayload<ExtArgs>[]
+    movies: Prisma.$MovieArtistPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1021,7 +964,7 @@ readonly fields: ArtistFieldRefs;
  */
 export interface Prisma__ArtistClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  movies<T extends Prisma.Artist$moviesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Artist$moviesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  movies<T extends Prisma.Artist$moviesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Artist$moviesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovieArtistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1455,23 +1398,23 @@ export type ArtistDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
  */
 export type Artist$moviesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Movie
+   * Select specific fields to fetch from the MovieArtist
    */
-  select?: Prisma.MovieSelect<ExtArgs> | null
+  select?: Prisma.MovieArtistSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Movie
+   * Omit specific fields from the MovieArtist
    */
-  omit?: Prisma.MovieOmit<ExtArgs> | null
+  omit?: Prisma.MovieArtistOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.MovieInclude<ExtArgs> | null
-  where?: Prisma.MovieWhereInput
-  orderBy?: Prisma.MovieOrderByWithRelationInput | Prisma.MovieOrderByWithRelationInput[]
-  cursor?: Prisma.MovieWhereUniqueInput
+  include?: Prisma.MovieArtistInclude<ExtArgs> | null
+  where?: Prisma.MovieArtistWhereInput
+  orderBy?: Prisma.MovieArtistOrderByWithRelationInput | Prisma.MovieArtistOrderByWithRelationInput[]
+  cursor?: Prisma.MovieArtistWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.MovieScalarFieldEnum | Prisma.MovieScalarFieldEnum[]
+  distinct?: Prisma.MovieArtistScalarFieldEnum | Prisma.MovieArtistScalarFieldEnum[]
 }
 
 /**

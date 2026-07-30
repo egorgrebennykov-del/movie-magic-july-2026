@@ -43,13 +43,13 @@
         {{#each movie.cast}}
         <div class="cast-card">
             <div class="card-img">
-                <img src="{{imageUrl}}" alt="{{name}}">
+                <img src="{{this.artist.imageUrl}}" alt="{{this.artist.name}}">
             </div>
             <div class="cast-info">
-                <h1>{{name}}</h1>
-                <h3>Age: {{age}}</h3>
-                <h3>Born: {{born}}</h3>
-                <h3>Name in Movie: TBI</h3>
+                <h1>{{this.artist.name}}</h1>
+                <h3>Age: {{this.artist.age}}</h3>
+                <h3>Born: {{this.artist.born}}</h3>
+                <h3>Name in Movie: {{this.character}}</h3>
             </div>
         </div>
         {{/each}}

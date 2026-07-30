@@ -28,6 +28,11 @@ export type Movie = Prisma.MovieModel
  */
 export type Artist = Prisma.ArtistModel
 /**
+ * Model MovieArtist
+ * 
+ */
+export type MovieArtist = Prisma.MovieArtistModel
+/**
  * Model User
  * 
  */

@@ -22,7 +22,11 @@ export async function getAll(filter = {}) {
 export async function getById(movieId) {
     const movie = await prisma.movie.findUnique({
         where: { id: movieId },
-        include: { cast: true }
+        include: {
+            cast: {
+                include: { artist: true }
+            }
+        }
     });
 
     if (!movie) {
@@ -40,15 +44,18 @@ export async function create(movieData) {
     return movie;
 }
 
-export async function attachArtist(movieId, artistId)
+export async function attachArtist(movieId, artistId, character)
 {
-    const result = await prisma.movie.update({
-        where: {id: movieId},
+    const result = await prisma.movieArtist.create({
         data: {
-            cast:{
-                connect: {id: artistId}
-            }
-        }
+            movie: {
+                connect: { id: movieId }
+            },
+            artist: {
+                connect: { id: artistId }
+            },
+            character,
+        },
     });
 
     return result;

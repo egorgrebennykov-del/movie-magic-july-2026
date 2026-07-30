@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Movie: 'Movie',
   Artist: 'Artist',
+  MovieArtist: 'MovieArtist',
   User: 'User'
 } as const
 
@@ -84,7 +85,6 @@ export const MovieScalarFieldEnum = {
   description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  artistId: 'artistId',
   userId: 'userId'
 } as const
 
@@ -102,6 +102,15 @@ export const ArtistScalarFieldEnum = {
 } as const
 
 export type ArtistScalarFieldEnum = (typeof ArtistScalarFieldEnum)[keyof typeof ArtistScalarFieldEnum]
+
+
+export const MovieArtistScalarFieldEnum = {
+  movieId: 'movieId',
+  artistId: 'artistId',
+  character: 'character'
+} as const
+
+export type MovieArtistScalarFieldEnum = (typeof MovieArtistScalarFieldEnum)[keyof typeof MovieArtistScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
